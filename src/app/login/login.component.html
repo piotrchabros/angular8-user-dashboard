@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      ITCPC
+    </mat-card-title>
+    <mat-card-subtitle>
+      Please login to continue
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <input placeholder="username" [(ngModel)]="username" matInput name="username" type="text" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input placeholder="password" [(ngModel)]="password" matInput name="password" type="password" />
+    </mat-form-field>
+    <br />
+    <button mat-flat-button color="primary" (click)="login()">Submit</button>
+  </mat-card-content>
+</mat-card>

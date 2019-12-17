@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <span class=".mat-headline">ITCPC</span>
+  <span fxFlex></span>
+  <span fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <a mat-flat-button color="primary" *ngIf="!authService.isUserLoggedIn()" routerLink="/login"
+      routerLinkActive="active">Login</a>
+    <a mat-flat-button color="primary" *ngIf="!authService.isUserLoggedIn()" routerLink="/register"
+      routerLinkActive="active">Register</a>
+    <button mat-flat-button color="primary" *ngIf="authService.isUserLoggedIn()"
+      [matMenuTriggerFor]="menu">Users</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/users">List</button>
+      <button mat-menu-item routerLink="/users/add">Add</button>
+    </mat-menu> <!-- widoczne tylko dla admina! jak zrobic? -->
+
+    <a mat-flat-button color="primary" *ngIf="authService.isUserLoggedIn()" routerLink="/logout"
+      routerLinkActive="active">Logout</a>
+
+  </span>
+</mat-toolbar>
+<router-outlet></router-outlet>

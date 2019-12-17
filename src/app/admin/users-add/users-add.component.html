@@ -1,0 +1,85 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      ITCPC
+    </mat-card-title>
+    <mat-card-subtitle>
+      Add a new user to the system
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="userAddForm" novalidate>
+      <mat-form-field>
+        <input placeholder="username" formControlName="username" matInput type="text" />
+        <div
+          *ngIf="userAddForm.controls['username'].invalid && (userAddForm.controls['username'].dirty || userAddForm.controls['username'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="userAddForm.controls['username'].errors.required">
+            Name is required.
+          </div>
+        </div>
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="password" formControlName="password" matInput type="password" />
+        <div
+          *ngIf="userAddForm.controls['password'].invalid && (userAddForm.controls['password'].dirty || userAddForm.controls['password'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="userAddForm.controls['password'].errors.required">
+            Password is required.
+          </div>
+        </div>
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="confirm password" formControlName="confirmPassword" matInput type="password" />
+        <div
+          *ngIf="userAddForm.controls['confirmPassword'].invalid&& (userAddForm.controls['confirmPassword'].dirty || userAddForm.controls['confirmPassword'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="userAddForm.controls['confirmPassword'].errors.required">Confirm Password is required</div>
+          <div *ngIf="userAddForm.controls['confirmPassword'].errors.mustMatch">Passwords must match</div>
+        </div>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Roles</mat-label>
+        <mat-select mulitple>
+          <mat-option *ngFor="let role of roles" [value]="role">{{role.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br />
+      <button mat-flat-button color="primary" type="submit" (click)="add()">Add</button>
+    </form>
+    <br />
+    <mat-form-field>
+      <input placeholder="name" [(ngModel)]="user.name" matInput type="text" />
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+      <input placeholder="surname" [(ngModel)]="user.surname" matInput type="text" />
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+      <input placeholder="email" [(ngModel)]="user.email" matInput type="text" />
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field>
+      <input placeholder="phone" [(ngModel)]="user.phone" matInput type="text" />
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+      <input placeholder="country" [(ngModel)]="user.country" matInput type="text" />
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+      <input placeholder="language" [(ngModel)]="user.language" matInput type="text" />
+    </mat-form-field>&nbsp;
+    <br />
+
+    <mat-form-field>
+      <input placeholder="company" [(ngModel)]="user.company" matInput type="text" />
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+      <input placeholder="employees" [(ngModel)]="user.employees" matInput type="text" />
+    </mat-form-field>&nbsp;
+    <mat-form-field>
+      <input placeholder="enabled" [(ngModel)]="user.enabled" matInput type="text" value=1 disabled />
+    </mat-form-field>&nbsp;
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Remove {{data.user.username}}?</h1>
+<p>Are you sure to remove?</p>
+
+<div mat-dialog-content>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="onYesClick()" cdkFocusInitial>Yes</button>
+  </div>
+  <br /><br />
+</div>
