@@ -1,3 +1,5 @@
+import { Role } from './role'
+
 export class User {
   id: number
   name: string
@@ -11,4 +13,5 @@ export class User {
   phone: string
   language: string
   enabled: boolean
+  roles: Role[]
 }

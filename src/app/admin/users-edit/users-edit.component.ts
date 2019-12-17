@@ -5,6 +5,8 @@ import { User } from '../user';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../users.service';
 import { ToastrService } from 'ngx-toastr';
+import { Role } from '../role';
+import { RolesService } from '../roles.service';
 
 @Component({
   selector: 'app-users-edit',
@@ -14,10 +16,15 @@ import { ToastrService } from 'ngx-toastr';
 export class UsersEditComponent implements OnInit {
 
   user: User = new User()
+  roles: Role[]
+  selectedRoles: Role[]
   id: number
   userForm: FormGroup
+  rolesControl: FormGroup
+
   constructor(
     private route: ActivatedRoute,
+    private rolesService: RolesService,
     private usersService: UsersService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService) {
@@ -28,7 +35,11 @@ export class UsersEditComponent implements OnInit {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'))
     this.usersService.getUser(this.id).subscribe((data: User) => {
       this.user = data
+      this.selectedRoles = this.user.roles
       this.userForm.get('username').setValue(this.user.username)
+    })
+    this.rolesService.getRoles().subscribe((roles: Role[]) => {
+      this.roles = roles
     })
   }
 
@@ -55,5 +66,11 @@ export class UsersEditComponent implements OnInit {
     } else {
       this.toastr.warning('Form validation errors', 'Warning')
     }
+  }
+
+  onRoleChanged(roles):void {
+    this.user.roles = roles
+    console.log(this.selectedRoles)
+    console.log(this.user)
   }
 }

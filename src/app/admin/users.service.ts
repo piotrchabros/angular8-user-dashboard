@@ -48,6 +48,7 @@ export class UsersService {
         company: user.company,
         employees: user.employees,
         phone: user.phone,
+        roles: user.roles,
         enabled: 1
       }) //TODO: this cannot be converted by JSON.stringify(user)
   }

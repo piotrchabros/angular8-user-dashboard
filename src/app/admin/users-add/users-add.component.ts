@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { UsersService } from '../users.service';
 import { User } from '../user';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -6,6 +6,7 @@ import { MustMatch } from './PasswordsMustMatch';
 import { ToastrService } from 'ngx-toastr';
 import { Role } from '../role';
 import { RolesService } from '../roles.service';
+import { MatSelectChange } from '@angular/material';
 
 @Component({
   selector: 'app-users-add',
@@ -56,6 +57,10 @@ export class UsersAddComponent implements OnInit {
     } else {
       this.toastr.warning('Form validation errors', 'Warning')
     }
+  }
+
+  onRoleChanged(eventValue: Role[]) {
+    this.user.roles = eventValue
   }
 
 }
