@@ -10,8 +10,8 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers() {
-    return this.httpClient.get("http://localhost:8080/users")
+  getUsers(page: number, size: number) {
+    return this.httpClient.get("http://localhost:8080/users?page=" + page + "&size=" + size)
   }
 
   getUser(id: number): Observable<Object> {

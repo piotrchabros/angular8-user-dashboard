@@ -9,7 +9,8 @@ import {
   MatMenuModule,
   MatIconModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatPaginatorModule
 } from '@angular/material'
 
 
@@ -23,7 +24,8 @@ import {
     MatMenuModule,
     MatIconModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
   ],
   imports: [
     MatToolbarModule,
@@ -34,7 +36,8 @@ import {
     MatMenuModule,
     MatIconModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { UsersService } from '../users.service';
 import { User } from '../user';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, PageEvent } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,9 @@ export interface DialogData {
 })
 export class UsersListComponent implements OnInit {
 
+  totalElements: number
+  pageSize: number = 10
+  pageNumber: number = 0
   users: User[]
   displayedColumns: string[] = ['id', 'name', 'surname', 'username', 'email', 'enabled', 'actions'];
 
@@ -26,8 +29,11 @@ export class UsersListComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe((users: User[]) => {
-      this.users = users
+    this.usersService.getUsers(this.pageNumber, this.pageSize).subscribe((pageInfo: any) => {
+      this.users = pageInfo.content
+      this.totalElements = pageInfo.totalElements
+      this.pageSize = pageInfo.size
+      this.pageNumber = pageInfo.number
     })
   }
 
@@ -44,10 +50,18 @@ export class UsersListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
         this.toastr.info('User deleted', 'Info')
-        this.usersService.getUsers().subscribe((users: User[]) => {
-          this.users = users
+        this.usersService.getUsers(this.pageNumber, this.pageSize).subscribe((pageInfo: any) => {
+          this.users = pageInfo.content
         })
       }
+    })
+  }
+
+  changePage(event: PageEvent) {
+    this.pageNumber = event.pageIndex
+    this.pageSize = event.pageSize
+    this.usersService.getUsers(this.pageNumber, this.pageSize).subscribe((pageInfo: any) => {
+      this.users = pageInfo.content
     })
   }
 }

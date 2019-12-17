@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { User } from './admin/user';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,13 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService) { }
+  currentUser: User
+
+  constructor(private authService: AuthService) {
+  }
+
+  isAdmin(): boolean {
+    return true
+  }
 
 }
