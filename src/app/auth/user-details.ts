@@ -4,3 +4,4 @@ export class UserDetails {
     username: string
     authorities: Authority[]
 }
+

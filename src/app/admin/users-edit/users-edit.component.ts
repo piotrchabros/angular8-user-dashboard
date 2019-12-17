@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MustMatch } from "../users-add/PasswordsMustMatch";
 import { User } from "../user";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { UsersService } from "../users.service";
 import { ToastrService } from "ngx-toastr";
 import { Role } from "../role";
@@ -21,6 +21,7 @@ export class UsersEditComponent implements OnInit {
   selectedOption = [];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private rolesService: RolesService,
     private usersService: UsersService,
@@ -79,5 +80,9 @@ export class UsersEditComponent implements OnInit {
 
   onRoleChanged(roles: number[]): void {
     this.user.roles = this.roles.filter(role => roles.indexOf(role.id) >= 0)
+  }
+
+  backToUserList() {
+    this.router.navigate(['/users'])
   }
 }

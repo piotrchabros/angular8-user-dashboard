@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Role } from '../role';
 import { RolesService } from '../roles.service';
 import { MatSelectChange } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-add',
@@ -21,6 +22,7 @@ export class UsersAddComponent implements OnInit {
   rolesControl = new FormControl()
 
   constructor(
+    private router: Router,
     private rolesService: RolesService,
     private usersService: UsersService,
     private formBuilder: FormBuilder,
@@ -61,6 +63,10 @@ export class UsersAddComponent implements OnInit {
 
   onRoleChanged(eventValue: Role[]) {
     this.user.roles = eventValue
+  }
+
+  backToUserList() {
+    this.router.navigate(['/users'])
   }
 
 }

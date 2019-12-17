@@ -14,8 +14,4 @@ export class AppComponent {
   constructor(private authService: AuthService) {
   }
 
-  isAdmin(): boolean {
-    return true
-  }
-
 }

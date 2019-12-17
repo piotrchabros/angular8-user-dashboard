@@ -1,12 +1,14 @@
 <mat-toolbar color="primary">
-  <span class=".mat-headline">ITCPC</span>
+  <span class=".mat-headline">
+    <a mat-flat-button color="primary" routerLink="/homepage">
+      <h1 class=".mat-display-4">ITCPC</h1>
+    </a>
+  </span>
   <span fxFlex></span>
   <span fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
     <a mat-flat-button color="primary" *ngIf="!authService.isUserLoggedIn()" routerLink="/login"
       routerLinkActive="active">Login</a>
-    <a mat-flat-button color="primary" *ngIf="!authService.isUserLoggedIn()" routerLink="/register"
-      routerLinkActive="active">Register</a>
-    <button mat-flat-button color="primary" *ngIf="authService.isUserLoggedIn() && isAdmin()"
+    <button mat-flat-button color="primary" *ngIf="authService.isUserLoggedIn() && authService.isAdmin()"
       [matMenuTriggerFor]="menu">Users</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/users">List</button>
