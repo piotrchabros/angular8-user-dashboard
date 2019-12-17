@@ -3,11 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { User } from '../admin/user';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { UserDetails } from './userDetails';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  userDetails: UserDetails
 
   constructor(
     private httpClient: HttpClient
@@ -18,10 +21,10 @@ export class AuthService {
     return this.httpClient.post<any>('http://localhost:8080/authenticate', { username, password }).pipe(
       map(
         userData => {
-          sessionStorage.setItem('username', username);
-          sessionStorage.setItem('userDetails', userData.userDetails)
-          let tokenStr = 'Bearer ' + userData.token;
-          sessionStorage.setItem('token', tokenStr);
+          this.userDetails = userData.userDetails
+          sessionStorage.setItem('username', username)
+          let tokenStr = 'Bearer ' + userData.token
+          sessionStorage.setItem('token', tokenStr)
           return userData;
         }
       )

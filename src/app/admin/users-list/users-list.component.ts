@@ -4,6 +4,7 @@ import { User } from '../user';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, PageEvent } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ConfirmDeleteUserDialog } from '../dialogs/confirm-user-delete-dialog';
 
 export interface DialogData {
   user: User;
@@ -29,12 +30,7 @@ export class UsersListComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.usersService.getUsers(this.pageNumber, this.pageSize).subscribe((pageInfo: any) => {
-      this.users = pageInfo.content
-      this.totalElements = pageInfo.totalElements
-      this.pageSize = pageInfo.size
-      this.pageNumber = pageInfo.number
-    })
+    this.downloadUsersAndUpdatePage();
   }
 
   editUser(user: User) {
@@ -50,9 +46,7 @@ export class UsersListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
         this.toastr.info('User deleted', 'Info')
-        this.usersService.getUsers(this.pageNumber, this.pageSize).subscribe((pageInfo: any) => {
-          this.users = pageInfo.content
-        })
+        this.downloadUsersAndUpdatePage();
       }
     })
   }
@@ -60,29 +54,15 @@ export class UsersListComponent implements OnInit {
   changePage(event: PageEvent) {
     this.pageNumber = event.pageIndex
     this.pageSize = event.pageSize
+    this.downloadUsersAndUpdatePage();
+  }
+
+  private downloadUsersAndUpdatePage() {
     this.usersService.getUsers(this.pageNumber, this.pageSize).subscribe((pageInfo: any) => {
-      this.users = pageInfo.content
-    })
-  }
-}
-
-@Component({
-  selector: 'confirm-delete-user-dialog',
-  templateUrl: 'confirm-delete-user-dialog.html',
-})
-export class ConfirmDeleteUserDialog {
-
-  constructor(
-    private usersService: UsersService,
-    public dialogRef: MatDialogRef<ConfirmDeleteUserDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  onYesClick(): void {
-    this.usersService.deleteUser(this.data.user).subscribe();
-    this.dialogRef.close(true);
+      this.users = pageInfo.content;
+      this.totalElements = pageInfo.totalElements;
+      this.pageSize = pageInfo.size;
+      this.pageNumber = pageInfo.number;
+    });
   }
 }

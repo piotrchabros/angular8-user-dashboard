@@ -11,7 +11,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HtppInterceptorService } from './auth/http-interceptor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
-import { ConfirmDeleteUserDialog } from './admin/users-list/users-list.component';
+import { ConfirmDeleteUserDialog } from './admin/dialogs/confirm-user-delete-dialog';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({

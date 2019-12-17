@@ -46,7 +46,6 @@
         </mat-select>
       </mat-form-field>
       <br />
-      <button mat-flat-button color="primary" type="submit" (click)="add()">Add</button>
     </form>
     <br />
     <mat-form-field>
@@ -81,5 +80,10 @@
     <mat-form-field>
       <input placeholder="enabled" [(ngModel)]="user.enabled" matInput type="text" value="true" disabled />
     </mat-form-field>&nbsp;
+    <br />
+    <button mat-flat-button color="primary" type="submit" (click)="add()">Bak to user list</button>
+
+    <button mat-flat-button color="primary" type="submit" (click)="add()">Add</button>
   </mat-card-content>
+
 </mat-card>
