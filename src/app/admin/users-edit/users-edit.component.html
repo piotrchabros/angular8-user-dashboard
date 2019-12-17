@@ -42,12 +42,12 @@
 
     <br />
 
-      <mat-form-field>
-        <mat-label>Roles</mat-label>
-        <mat-select multiple [(ngModel)]="selectedOptions" (selectionChange)="onRoleChanged($event.value)">
-          <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Roles</mat-label>
+      <mat-select [(ngModel)]="selectedOption" multiple (selectionChange)="onRoleChanged($event.value)">
+        <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <br />
 
