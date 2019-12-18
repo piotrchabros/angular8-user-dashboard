@@ -8,7 +8,8 @@ import { AuthorityEnum } from './authority-enum';
 })
 export class RoleAuthGuard implements CanActivate {
 
-    constructor(private router: Router,
+    constructor(
+        private router: Router,
         private authService: AuthService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

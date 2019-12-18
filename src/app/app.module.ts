@@ -5,12 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { routingComponents } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HtppInterceptorService } from './auth/http-interceptor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
-import { ConfirmDeleteUserDialogComponent } from './admin/dialogs/confirm-user-delete-dialog';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthModule } from './auth/auth.module';
 import { NavigationModule } from './navigation/navigation.module';

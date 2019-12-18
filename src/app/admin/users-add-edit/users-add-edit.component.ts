@@ -112,6 +112,7 @@ export class UsersAddEditComponent implements OnInit {
 
   fillUser(): void {
     this.user.username = this.userForm.get('username').value;
+    this.user.password = this.userForm.get('password').value;
     this.user.name = this.userForm.get('name').value;
     this.user.surname = this.userForm.get('surname').value;
     this.user.email = this.userForm.get('email').value;
