@@ -1,6 +1,6 @@
-import { Component, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
-import { User } from './admin/user';
+import { User } from './admin/models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { User } from './admin/user';
 })
 export class AppComponent {
 
-  currentUser: User
+  currentUser: User;
 
   constructor(private authService: AuthService) {
   }

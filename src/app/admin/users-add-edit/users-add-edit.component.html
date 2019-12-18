@@ -1,0 +1,81 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      ITCPC
+    </mat-card-title>
+    <mat-card-subtitle>
+      Add a new user to the system
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="userForm" novalidate>
+      <mat-form-field>
+        <input placeholder="username" formControlName="username" matInput type="text" />
+        <div
+          *ngIf="userForm.controls['username'].invalid && (userForm.controls['username'].dirty || userForm.controls['username'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="userForm.controls['username'].errors.required">
+            Name is required.
+          </div>
+        </div>
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="password" formControlName="password" matInput type="password" />
+        <div
+          *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="userForm.controls['password'].errors.required">
+            Password is required.
+          </div>
+        </div>
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="confirm password" formControlName="confirmPassword" matInput type="password" />
+        <div
+          *ngIf="userForm.controls['confirmPassword'].invalid && (userForm.controls['confirmPassword'].dirty || userForm.controls['confirmPassword'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="userForm.controls['confirmPassword'].errors.required">Confirm Password is required</div>
+          <div *ngIf="userForm.controls['confirmPassword'].errors.mustMatch">Passwords must match</div>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Roles</mat-label>
+        <mat-select formControlName="roles" multiple (selectionChange)="onRoleChanged($event.value)">
+          <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input placeholder="name" formControlName="name" matInput type="text" />
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="surname" formControlName="surname" matInput type="text" />
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="email" formControlName="email" matInput type="text" />
+      </mat-form-field>
+      <mat-form-field>
+        <input placeholder="phone" formControlName="phone" matInput type="text" />
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="country" formControlName="country" matInput type="text" />
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="language" formControlName="language" matInput type="text" />
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="company" formControlName="company" matInput type="text" />
+      </mat-form-field>&nbsp;
+      <mat-form-field>
+        <input placeholder="employees" formControlName="employees" matInput type="text" />
+      </mat-form-field>&nbsp;
+      <mat-checkbox formControlName="enabled">Enabled</mat-checkbox>
+      <div>
+        <button mat-flat-button color="primary" type="submit" (click)="backToUserList()">Back to user
+          list</button>&nbsp;
+        <button type="submit" mat-flat-button color="primary" value="Save" (click)="saveForm()">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

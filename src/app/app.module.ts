@@ -4,31 +4,39 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout'
 import { MaterialModule } from './material/material.module';
 import { routingComponents } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HtppInterceptorService } from './auth/http-interceptor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
-import { ConfirmDeleteUserDialog } from './admin/dialogs/confirm-user-delete-dialog';
+import { ConfirmDeleteUserDialogComponent } from './admin/dialogs/confirm-user-delete-dialog';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthModule } from './auth/auth.module';
+import { NavigationModule } from './navigation/navigation.module';
+import { HomepageModule } from './homepage/homepage.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { AdminModule } from './admin/admin.module';
+import { NotFoundModule } from './not-found/not-found.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
-    ConfirmDeleteUserDialog,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AuthModule,
+    NavigationModule,
+    HomepageModule,
+    DashboardModule,
+    AdminModule,
+    NotFoundModule,
     ToastrModule.forRoot()
   ],
   providers: [{
@@ -36,7 +44,6 @@ import { ToastrModule } from 'ngx-toastr';
     useClass: HtppInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent],
-  entryComponents: [ConfirmDeleteUserDialog]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

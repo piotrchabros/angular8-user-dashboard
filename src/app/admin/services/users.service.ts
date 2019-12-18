@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from './user';
-import { throwError, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +11,15 @@ export class UsersService {
   constructor(private httpClient: HttpClient) { }
 
   getUsers(page: number, size: number) {
-    return this.httpClient.get("http://localhost:8080/users?page=" + page + "&size=" + size)
+    return this.httpClient.get('http://localhost:8080/users?page=' + page + '&size=' + size);
   }
 
-  getUser(id: number): Observable<Object> {
-    return this.httpClient.get("http://localhost:8080/users/" + id)
+  getUser(id: number): Observable<object> {
+    return this.httpClient.get('http://localhost:8080/users/' + id);
   }
 
-  updateUser(user: User, id: number): Observable<Object> {
-    return this.httpClient.put("http://localhost:8080/users/" + id,
+  updateUser(user: User, id: number): Observable<object> {
+    return this.httpClient.put('http://localhost:8080/users/' + id,
       {
         name: user.name,
         surname: user.surname,
@@ -33,11 +33,11 @@ export class UsersService {
         phone: user.phone,
         roles: user.roles,
         enabled: 1
-      })
+      });
   }
 
-  addUser(user: User): Observable<Object> {
-    return this.httpClient.post("http://localhost:8080/users",
+  addUser(user: User): Observable<object> {
+    return this.httpClient.post('http://localhost:8080/users',
       {
         name: user.name,
         surname: user.surname,
@@ -51,10 +51,10 @@ export class UsersService {
         phone: user.phone,
         roles: user.roles,
         enabled: 1
-      }) //TODO: this cannot be converted by JSON.stringify(user)
+      });
   }
 
-  deleteUser(user: User) {
-    return this.httpClient.delete("http://localhost:8080/users/" + user.id)
+  deleteUser(user: User): Observable<object> {
+    return this.httpClient.delete('http://localhost:8080/users/' + user.id)
   }
 }

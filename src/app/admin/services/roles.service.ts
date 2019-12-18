@@ -9,8 +9,8 @@ export class RolesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getRoles(): Observable<Object> {
-    return this.httpClient.get("http://localhost:8080/roles")
+  getRoles(): Observable<object> {
+    return this.httpClient.get('http://localhost:8080/roles');
   }
 
 }
