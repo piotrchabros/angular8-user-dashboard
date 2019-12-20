@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserDetails } from './user-details';
 import { AuthorityEnum } from './authority-enum';
 
@@ -10,7 +10,6 @@ import { AuthorityEnum } from './authority-enum';
 })
 export class AuthService {
   currentUserSubject: BehaviorSubject<UserDetails>;
-  isAdmin: boolean;
 
   constructor(
     private httpClient: HttpClient
@@ -18,35 +17,37 @@ export class AuthService {
     this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStorage.getItem('currentUser')));
   }
 
-  authenticate(username, password) {
+  authenticate(username, password): Observable<object> {
     return this.httpClient.post<any>('http://localhost:8080/authenticate', { username, password }).pipe(
       map(
         userData => {
           localStorage.setItem('currentUser', JSON.stringify(userData.userDetails));
           this.currentUserSubject.next(userData.userDetails);
-
-          // this.isAdmin = this.currentUserSubject.value.authorities
-          // .find(authority => authority.authority === AuthorityEnum.ROLE_ADMIN) !== undefined;
-
           sessionStorage.setItem('username', username);
           const tokenStr = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenStr);
           return userData;
         }
       )
-    )
+    );
   }
 
   public get currentUserValue(): UserDetails {
     return this.currentUserSubject.value;
   }
 
-  isUserLoggedIn() {
+  public get isAdmin(): boolean {
+    console.log('isadmin');
+    return this.currentUserSubject.value.authorities
+      .find(authority => authority.authority === AuthorityEnum.ROLE_ADMIN) !== undefined;
+  }
+
+  isUserLoggedIn(): boolean {
     const user = sessionStorage.getItem('username');
     return !(user === null);
   }
 
-  logOut() {
+  logOut(): void {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('currentUser');
   }
