@@ -10,8 +10,6 @@ export class NavigationComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  isAdmin = this.authService.isAdmin;
-
   ngOnInit(): void {
 
   }

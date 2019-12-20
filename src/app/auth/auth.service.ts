@@ -10,6 +10,7 @@ import { AuthorityEnum } from './authority-enum';
 })
 export class AuthService {
   currentUserSubject: BehaviorSubject<UserDetails>;
+  isAdmin: boolean;
 
   constructor(
     private httpClient: HttpClient
@@ -23,6 +24,7 @@ export class AuthService {
         userData => {
           localStorage.setItem('currentUser', JSON.stringify(userData.userDetails));
           this.currentUserSubject.next(userData.userDetails);
+          this.isAdmin = this.getIsAdmin;
           sessionStorage.setItem('username', username);
           const tokenStr = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenStr);
@@ -36,7 +38,7 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  public get isAdmin(): boolean {
+  public get getIsAdmin(): boolean {
     return this.currentUserSubject.value.authorities
       .find(authority => authority.authority === AuthorityEnum.ROLE_ADMIN) !== undefined;
   }

@@ -11,7 +11,8 @@ import {
   MatDialogModule,
   MatSelectModule,
   MatPaginatorModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatTabsModule
 } from '@angular/material'
 
 
@@ -27,7 +28,8 @@ import {
     MatDialogModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ],
   imports: [
     MatToolbarModule,
@@ -40,7 +42,8 @@ import {
     MatDialogModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ]
 })
 export class MaterialModule { }

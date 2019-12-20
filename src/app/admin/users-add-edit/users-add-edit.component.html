@@ -72,9 +72,9 @@
       </mat-form-field>&nbsp;
       <mat-checkbox formControlName="enabled">Enabled</mat-checkbox>
       <div>
+        <button type="submit" mat-flat-button color="accent" value="Save" (click)="saveForm()">Save</button>&nbsp;
         <button mat-flat-button color="primary" type="submit" (click)="backToUserList()">Back to user
-          list</button>&nbsp;
-        <button type="submit" mat-flat-button color="primary" value="Save" (click)="saveForm()">Save</button>
+          list</button>
       </div>
     </form>
   </mat-card-content>
