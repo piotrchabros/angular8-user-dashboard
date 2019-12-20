@@ -10,11 +10,10 @@ export class NavigationComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
+  isAdmin = this.authService.isAdmin;
 
-  test(): void {
-    console.log('test');
+  ngOnInit(): void {
+
   }
 
 }

@@ -10,7 +10,7 @@
     <span fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
         <a mat-flat-button color="primary" *ngIf="!authService.isUserLoggedIn()" routerLink="/login"
             routerLinkActive="active">Login</a>
-        <button mat-flat-button color="primary" *ngIf="authService.isUserLoggedIn() && authService.isAdmin"
+        <button mat-flat-button color="primary" *ngIf="authService.isUserLoggedIn() && isAdmin"
             [matMenuTriggerFor]="menu">Users</button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="/users">List</button>
