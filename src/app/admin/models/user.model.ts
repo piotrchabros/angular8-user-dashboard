@@ -13,5 +13,7 @@ export class User {
   phone: string;
   language: string;
   enabled: boolean;
+  createdAt: Date;
+  updatedAt: Date;
   roles: Role[];
 }

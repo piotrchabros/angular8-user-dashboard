@@ -1,4 +1,4 @@
-div .mat-tab-label .mat-tab-label-content {
-    font-size: 20px;
-    width: 50%;
+.signup-mat-label {
+    font-size: 20px !important;
+    width: 50% !important;
 }

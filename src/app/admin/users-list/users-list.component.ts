@@ -22,7 +22,7 @@ export class UsersListComponent implements OnInit {
   pageSize = 10;
   pageNumber = 0;
   users: User[];
-  displayedColumns: string[] = ['id', 'name', 'surname', 'username', 'email', 'enabled', 'actions'];
+  displayedColumns: string[] = ['id', 'username', 'enabled', 'createdAt', 'updatedAt', 'actions'];
 
   constructor(
     private router: Router,
